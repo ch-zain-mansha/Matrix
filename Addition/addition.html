@@ -1,17 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Addition</title>
-    <link rel="stylesheet" href="addition.css">
+    <title>Matrix Addition</title>
 </head>
+<link rel="stylesheet" href="addition.css">
 <body>
     <div class="container">
-        <h1 id="firstMatrix"></h1>
-        <h1 id="secondMatrix"></h1>
-        <h1 id="resultMatrix"></h1>
-    </div>
+    <h1>Matrix Addition</h1>
+    
+    <h2>First Matrix</h2>
+    <label for="rows_first_matrix">Number of Rows:</label>
+    <input type="number" id="rows_first_matrix" class="input_for_matrix"><br>
+    <label for="cols_first_matrix">Number of Columns:</label>
+    <input type="number" id="cols_first_matrix" class="input_for_matrix"><br>
+
+    <h2>Second Matrix</h2>
+    <label for="rows_second_matrix">Number of Rows:</label>
+    <input type="number" id="rows_second_matrix" class="input_for_matrix"><br>
+    <label for="cols_second_matrix">Number of Columns:</label>
+    <input type="number" id="cols_second_matrix" class="input_for_matrix"><br>
+
+    <button id="display_matrices">Create Matrices</button>
+
+    <div id="firstMatrix"></div>
+    <div id="secondMatrix"></div>
+    <div id="resultMatrix"></div>
+</div>
+    <script src="addition.js"></script>
 </body>
-<script src="addition.js"></script>
 </html>
