@@ -1,17 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subtraction</title>
+    <title>Matrix Subtraction</title>
     <link rel="stylesheet" href="subtraction.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
 </head>
 <body>
     <div class="container">
-        <h1 id="firstMatrix"></h1>
-        <h1 id="secondMatrix"></h1>
-        <h1 id="resultMatrix"></h1>
+        <div class="left_container">
+            <a href="../index.html"><button class="back_to_home">Back to home</button></a>
+            <div id="firstMatrix" class="matrix"></div>
+            <button class="first_matrix" id="edit_first_matrix">Edit Matrix</button>
+            <button class="first_matrix" id="create_new_first_matrix">Create new Matrix</button>
+            <div class="first_matrix_inputs" id="first_matrix_form">
+                <label for="rows_first_matrix">Number of Rows:</label>
+                <input type="number" id="rows_first_matrix" class="input_for_matrix"><br>
+                <label for="cols_first_matrix">Number of Columns:</label>
+                <input type="number" id="cols_first_matrix" class="input_for_matrix"><br>
+                <button id="create_first_matrix"  onclick="displayFirstMatrix()">Create Matrix</button>
+            </div>
+        </div>
+        <div class="center_container">
+           <button onclick="displayResultMatrix()"><i class="ri-subtract-line plus"></i></button>
+            <div id="resultMatrix" class="matrix" style="display: none;"></div>
+        </div>
+        <div class="right_container">
+            <div id="secondMatrix" class="matrix"></div>
+            <button class="first_matrix" id="edit_second_matrix">Edit Matrix</button>
+            <button class="first_matrix" id="create_new_second_matrix">Create new Matrix</button>
+            <div class="second_matrix_inputs" id="second_matrix_form">                
+                <label for="rows_second_matrix">Number of Rows:</label>
+                <input type="number" id="rows_second_matrix" class="input_for_matrix"><br>
+                <label for="cols_second_matrix">Number of Columns:</label>
+                <input type="number" id="cols_second_matrix" class="input_for_matrix"><br>
+                <button id="create_second_matrix" onclick="displaySecondMatrix()">Create Matrix</button>
+            </div>
+        </div>
     </div>
+    <script src="subtraction.js"></script>
 </body>
-<script src="subtraction.js"></script>
 </html>
