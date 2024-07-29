@@ -38,7 +38,7 @@ function writingMatrixinTable(matrix) {
     for (let i = 0; i < matrix.length; i++) {
         html += '<tr>';
         for (let j = 0; j < matrix[i].length; j++) {
-            html += `<td id="td">${matrix[i][j]}</td>`;
+            html += `<td>${matrix[i][j]}</td>`;
         }
         html += '</tr>';
     }
@@ -46,10 +46,9 @@ function writingMatrixinTable(matrix) {
     return html;
 }
 
-
 function displayFirstMatrix(){
     if (rowFirstMatrix && colFirstMatrix) {
-        matrix1 = createMatrices(rowFirstMatrix, colFirstMatrix);
+        let matrix1 = createMatrices(rowFirstMatrix, colFirstMatrix);
         localStorage.setItem('firstMatrix', JSON.stringify(matrix1));
         document.getElementById("firstMatrix").innerHTML = `First Matrix: <br>${writingMatrixinTable(matrix1)}`;
     }
@@ -57,7 +56,7 @@ function displayFirstMatrix(){
 
 function displaySecondMatrix() {
     if(rowSecondMatrix && colSecondMatrix){
-        matrix2 = createMatrices(rowSecondMatrix, colSecondMatrix);
+        let matrix2 = createMatrices(rowSecondMatrix, colSecondMatrix);
         localStorage.setItem('secondMatrix', JSON.stringify(matrix2));
         document.getElementById("secondMatrix").innerHTML = `Second Matrix: <br>${writingMatrixinTable(matrix2)}`;
     }
@@ -76,7 +75,6 @@ function displayResultMatrix(){
         document.getElementById("resultMatrix").innerHTML = "Order of matrices are not equal";
     }
 }
-    
 
 function matrixAddition(matrix1, matrix2) {
     let matrix = [];
@@ -89,11 +87,10 @@ function matrixAddition(matrix1, matrix2) {
     return matrix;
 }
 
-
-
 function loadMatrices() {
     let firstMatrix = JSON.parse(localStorage.getItem('firstMatrix'));
     let secondMatrix = JSON.parse(localStorage.getItem('secondMatrix'));
+    let resultMatrix = JSON.parse(localStorage.getItem('resultMatrix'));
 
     if (firstMatrix) {
         document.getElementById("firstMatrix").innerHTML = `First Matrix: <br>${writingMatrixinTable(firstMatrix)}`;
@@ -106,8 +103,6 @@ function loadMatrices() {
     }
 }
 
-
-
 document.getElementById("first_matrix_form").style.display = "none";
 document.getElementById("second_matrix_form").style.display = "none";
 
@@ -115,39 +110,56 @@ document.getElementById("create_new_first_matrix").addEventListener("click",()=>
     document.getElementById("create_new_first_matrix").style.display = "none";
     document.getElementById("first_matrix_form").style.display = "block";
 })
+
 document.getElementById("create_new_second_matrix").addEventListener("click",()=>{
     document.getElementById("create_new_second_matrix").style.display = "none";
     document.getElementById("second_matrix_form").style.display = "block";
 })
 
-
 document.getElementById("edit_first_matrix").addEventListener("click",()=>{
-    alert("Click the value of first matrix you want to change")
-let firstMatrix = document.getElementById("firstMatrix"); 
-    let tds = firstMatrix.querySelectorAll("td");
-    let clicked_td;
+    alert("Click the value of the first matrix you want to change");
+    let firstMatrixElement = document.getElementById("firstMatrix");
+    let tds = firstMatrixElement.querySelectorAll("td");
     tds.forEach(td => {
         td.addEventListener("click", (event) => {
-            clicked_td = event.target; 
-            let new_td_value = parseInt(prompt("Enter new entry"));
-            clicked_td.innerHTML = new_td_value;
-            console.log(clicked_td);
-        });  
+            let clicked_td = event.target;
+            let current_value = clicked_td.innerHTML;
+            let new_td_value = prompt("Enter new entry");
+            if (!isNaN(new_td_value) && new_td_value !== null && new_td_value.trim() !== '') {
+                clicked_td.innerHTML = parseInt(new_td_value);
+                let firstMatrix = JSON.parse(localStorage.getItem('firstMatrix'));
+                let row = Array.from(clicked_td.parentNode.parentNode.children).indexOf(clicked_td.parentNode);
+                let col = Array.from(clicked_td.parentNode.children).indexOf(clicked_td);
+                firstMatrix[row][col] = parseInt(new_td_value);
+                localStorage.setItem('firstMatrix', JSON.stringify(firstMatrix));
+            } else {
+                alert("Invalid input. Please enter a valid number.");
+                clicked_td.innerHTML = current_value;
+            }
+        });
     });
 });
 
-
 document.getElementById("edit_second_matrix").addEventListener("click",()=>{
-alert("Click the value of second matrix you want to change")
-let secondMatrix = document.getElementById("secondMatrix"); 
-    let tds = secondMatrix.querySelectorAll("td");
-    let clicked_td;
+    alert("Click the value of the second matrix you want to change");
+    let secondMatrixElement = document.getElementById("secondMatrix");
+    let tds = secondMatrixElement.querySelectorAll("td");
     tds.forEach(td => {
         td.addEventListener("click", (event) => {
-            clicked_td = event.target; 
-            let new_td_value = parseInt(prompt("Enter new entry"));
-            clicked_td.innerHTML = new_td_value;
-            console.log(clicked_td);
-        });  
+            let clicked_td = event.target;
+            let current_value = clicked_td.innerHTML;
+            let new_td_value = prompt("Enter new entry");
+            if (!isNaN(new_td_value) && new_td_value !== null && new_td_value.trim() !== '') {
+                clicked_td.innerHTML = parseInt(new_td_value);
+                let secondMatrix = JSON.parse(localStorage.getItem('secondMatrix'));
+                let row = Array.from(clicked_td.parentNode.parentNode.children).indexOf(clicked_td.parentNode);
+                let col = Array.from(clicked_td.parentNode.children).indexOf(clicked_td);
+                secondMatrix[row][col] = parseInt(new_td_value);
+                localStorage.setItem('secondMatrix', JSON.stringify(secondMatrix));
+            } else {
+                alert("Invalid input. Please enter a valid number.");
+                clicked_td.innerHTML = current_value;
+            }
+        });
     });
 });
