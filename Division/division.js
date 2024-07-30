@@ -81,7 +81,7 @@ function matrixAddition(matrix1, matrix2) {
     for (let i = 0; i < matrix1.length; i++) {
         matrix[i] = [];
         for (let j = 0; j < matrix1[0].length; j++) {
-            matrix[i][j] = matrix1[i][j] + matrix2[i][j];
+            matrix[i][j] = matrix1[i][j] /  matrix2[i][j];
         }
     }
     return matrix;
