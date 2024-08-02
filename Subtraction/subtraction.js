@@ -46,11 +46,15 @@ function writingMatrixinTable(matrix) {
     return html;
 }
 
+
 function displayFirstMatrix(){
     if (rowFirstMatrix && colFirstMatrix) {
         let matrix1 = createMatrices(rowFirstMatrix, colFirstMatrix);
         localStorage.setItem('firstMatrix', JSON.stringify(matrix1));
         document.getElementById("firstMatrix").innerHTML = `First Matrix: <br>${writingMatrixinTable(matrix1)}`;
+        document.getElementById("first_matrix_form").style.display = "none";
+        document.getElementById("create_new_first_matrix").style.display = "block";
+        document.getElementById("create_new_first_matrix").style.marginLeft = "46px";
     }
 }
 
@@ -59,9 +63,11 @@ function displaySecondMatrix() {
         let matrix2 = createMatrices(rowSecondMatrix, colSecondMatrix);
         localStorage.setItem('secondMatrix', JSON.stringify(matrix2));
         document.getElementById("secondMatrix").innerHTML = `Second Matrix: <br>${writingMatrixinTable(matrix2)}`;
+        document.getElementById("second_matrix_form").style.display = "none";
+        document.getElementById("create_new_second_matrix").style.display = "block";
+        document.getElementById("create_new_second_matrix").style.marginLeft = "46px";
     }
 }
-
 function displayResultMatrix(){
     if (rowFirstMatrix === rowSecondMatrix && colFirstMatrix === colSecondMatrix) {
         let firstMatrix = JSON.parse(localStorage.getItem('firstMatrix'));

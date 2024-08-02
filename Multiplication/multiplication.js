@@ -46,7 +46,6 @@ function writingMatrixinTable(matrix) {
     return html;
 }
 
-
 function displayFirstMatrix(){
     if (rowFirstMatrix && colFirstMatrix) {
         let matrix1 = createMatrices(rowFirstMatrix, colFirstMatrix);
@@ -70,10 +69,10 @@ function displaySecondMatrix() {
 }
 
 function displayResultMatrix(){
-    if (rowFirstMatrix === rowSecondMatrix && colFirstMatrix === colSecondMatrix) {
+    if (rowFirstMatrix === colSecondMatrix) {
         let firstMatrix = JSON.parse(localStorage.getItem('firstMatrix'));
         let secondMatrix = JSON.parse(localStorage.getItem('secondMatrix'));
-        let resultMatrix = matrixAddition(firstMatrix, secondMatrix);
+        let resultMatrix = matrixMultiplication(firstMatrix, secondMatrix);
         localStorage.setItem('resultMatrix', JSON.stringify(resultMatrix));
         document.getElementById("resultMatrix").innerHTML = `Result Matrix: <br>${writingMatrixinTable(resultMatrix)}`;
         console.log(resultMatrix)
@@ -83,16 +82,28 @@ function displayResultMatrix(){
     }
 }
 
-function matrixAddition(matrix1, matrix2) {
-    let matrix = [];
-    for (let i = 0; i < matrix1.length; i++) {
-        matrix[i] = [];
-        for (let j = 0; j < matrix1[0].length; j++) {
-            matrix[i][j] = matrix1[i][j] + matrix2[i][j];
+function matrixMultiplication(matrix1, matrix2) {
+    if (matrix1[0].length === matrix2.length) {
+        let matrix = [];
+        for (let i = 0; i < matrix1.length; i++) {
+            matrix[i] = [];
+            for (let j = 0; j < matrix2[0].length; j++) {
+                matrix[i][j] = 0; 
+            }
         }
+        for (let i = 0; i < matrix1.length; i++) {
+            for (let j = 0; j < matrix2[0].length; j++) {
+                for (let k = 0; k < matrix1[0].length; k++) {
+                    matrix[i][j] += matrix1[i][k] * matrix2[k][j];
+                }
+            }
+        }
+        return matrix;
+    } else {
+        document.getElementById("resultMatrix").innerHTML = "Multiplication is not possible";
     }
-    return matrix;
 }
+
 
 function loadMatrices() {
     let firstMatrix = JSON.parse(localStorage.getItem('firstMatrix'));

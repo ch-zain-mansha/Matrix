@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Transpose</title>
+    <link rel="stylesheet" href="transpose.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="left_container">
+            <a href="../index.html"><button class="back_to_home">Back to home</button></a>
+            <div id="firstMatrix" class="matrix"></div>
+            <button class="matrix_action" id="edit_first_matrix">Edit Matrix</button>
+            <button class="matrix_action" id="create_new_first_matrix">Create New Matrix</button>
+            <div class="matrix_inputs" id="first_matrix_form">
+                <label for="rows_first_matrix">Number of Rows:</label>
+                <input type="number" id="rows_first_matrix" class="input_for_matrix"><br>
+                <label for="cols_first_matrix">Number of Columns:</label>
+                <input type="number" id="cols_first_matrix" class="input_for_matrix"><br>
+                <button id="create_first_matrix" onclick="displayFirstMatrix()">Create Matrix</button>
+            </div>
+        </div>
+        <div class="center_container">
+            <button onclick="transposeMatrix('first')">Transpose First Matrix</button>
+            <button onclick="transposeMatrix('second')">Transpose Second Matrix</button>
+            <div id="resultMatrix" class="matrix" style="display: none;"></div>
+        </div>
+        <div class="right_container">
+            <div id="secondMatrix" class="matrix"></div>
+            <button class="matrix_action" id="edit_second_matrix">Edit Matrix</button>
+            <button class="matrix_action" id="create_new_second_matrix">Create New Matrix</button>
+            <div class="matrix_inputs" id="second_matrix_form">
+                <label for="rows_second_matrix">Number of Rows:</label>
+                <input type="number" id="rows_second_matrix" class="input_for_matrix"><br>
+                <label for="cols_second_matrix">Number of Columns:</label>
+                <input type="number" id="cols_second_matrix" class="input_for_matrix"><br>
+                <button id="create_second_matrix" onclick="displaySecondMatrix()">Create Matrix</button>
+            </div>
+        </div>
+    </div>
+    <script src="transpose.js"></script>
+</body>
+</html>
